@@ -1,7 +1,0 @@
---- open-vm-tools-2008.10.10-123053/scripts/common/vmware-user.desktop~	2008-10-13 09:01:55.000000000 +0200
-+++ open-vm-tools-2008.10.10-123053/scripts/common/vmware-user.desktop	2008-10-21 09:36:42.000000000 +0200
-@@ -4,3 +4,4 @@
- Name=VMware User Agent
- X-KDE-autostart-phase=1
- NoDisplay=true
-+Type=Application
