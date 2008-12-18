@@ -1,9 +1,9 @@
-%define builddate 2008.10.10
-%define buildver 123053
+%define builddate 2008.11.18
+%define buildver 130226
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
-Release:   9%{?dist}
+Release:   1%{?dist}
 Summary:   VMware Guest OS Tools
 Group:     Applications/System
 License:   LGPLv2
@@ -13,7 +13,6 @@ Source1:   %{name}-guestd.init
 Source2:   %{name}-sysconfig.mouse
 Source3:   vmware-toolbox.desktop
 Source4:   %{name}-modprobe.vmnics
-Patch0:    %{name}-123053-desktop.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 ExclusiveArch: i386 x86_64
@@ -53,7 +52,6 @@ libraries.
 
 %prep
 %setup -q -n open-vm-tools-%{builddate}-%{buildver}
-%patch0 -p1 -b .desktop
 # Fix some permissions and formats
 chmod -x NEWS README ChangeLog AUTHORS COPYING
 sed -i 's/\r//' README
@@ -161,6 +159,10 @@ fi
 
 
 %changelog
+* Thu Dec 18 2008 Denis Leroy <denis@poolshark.org> - 0.0.0.130226-1
+- Update to upstream 130226
+- Desktop patch upstreamed
+
 * Mon Nov 10 2008 Denis Leroy <denis@poolshark.org> - 0.0.0.123053-9
 - Some more cleanups
 
