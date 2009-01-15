@@ -1,5 +1,5 @@
-%define builddate 2008.11.18
-%define buildver 130226
+%define builddate 2008.12.23
+%define buildver 137496
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
@@ -159,6 +159,9 @@ fi
 
 
 %changelog
+* Wed Jan 14 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.137496-1
+- Update to upstream 137496
+
 * Thu Dec 18 2008 Denis Leroy <denis@poolshark.org> - 0.0.0.130226-1
 - Update to upstream 130226
 - Desktop patch upstreamed
