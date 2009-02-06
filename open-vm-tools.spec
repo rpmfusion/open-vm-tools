@@ -1,5 +1,5 @@
-%define builddate 2008.12.23
-%define buildver 137496
+%define builddate 2009.01.21
+%define buildver 142982
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
@@ -159,6 +159,10 @@ fi
 
 
 %changelog
+* Fri Feb  6 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.142982-1
+- Update to upstream build 142982 (bug fixes)
+- Rebuild for libguest
+
 * Wed Jan 14 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.137496-1
 - Update to upstream 137496
 
