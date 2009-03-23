@@ -1,5 +1,5 @@
-%define builddate 2009.01.21
-%define buildver 142982
+%define builddate 2009.03.18
+%define buildver 154848
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
@@ -18,12 +18,15 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 ExclusiveArch: i386 x86_64
 
 BuildRequires: gtk2-devel
+BuildRequires: gtkmm24-devel
 BuildRequires: libXtst-devel
 BuildRequires: libdnet-devel
 BuildRequires: procps
 BuildRequires: libdnet-devel
 BuildRequires: libicu-devel
 BuildRequires: desktop-file-utils
+BuildRequires: uriparser-devel
+BuildRequires: libnotify-devel
 
 Requires:  open-vm-tools-kmod >= %{version}
 Obsoletes: open-vm-tools-kmod < %{version}
@@ -61,9 +64,13 @@ sed -i 's/\r//' README
 %configure \
         --disable-static \
         --disable-dependency-tracking \
-        --disable-unity \
         --without-kernel-modules \
-        --without-root-privileges
+        --without-root-privileges \
+        --with-gtkmm
+
+# Disable use of rpath
+sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 
 make %{?_smp_mflags}
 
@@ -131,21 +138,16 @@ fi
 %files
 %defattr(-,root,root,-)
 %doc AUTHORS COPYING ChangeLog NEWS README
-%{_bindir}/vmware*
+%{_bindir}/vm*
 %{_sbindir}/vmware*
 %{_datadir}/applications/*.desktop
 %{_sysconfdir}/xdg/autostart/*.desktop
 %{_datadir}/pixmaps/*.xpm
 %{_libdir}/*.so.*
+%{_libdir}/open-vm-tools
 %{_sysconfdir}/init.d/*
-%config(noreplace) %attr(0644,root,root) %{_sysconfdir}/pam.d/vmware-guestd*
-%dir %{_sysconfdir}/vmware-tools
-%{_sysconfdir}/vmware-tools/poweroff-vm-default
-%{_sysconfdir}/vmware-tools/poweron-vm-default
-%{_sysconfdir}/vmware-tools/resume-vm-default
-%{_sysconfdir}/vmware-tools/suspend-vm-default
-%{_sysconfdir}/vmware-tools/vm-support
-%config(noreplace) %{_sysconfdir}/vmware-tools/tools.conf
+%{_sysconfdir}/vmware-tools
+%config(noreplace) %{_sysconfdir}/pam.d/*
 %config(noreplace) %{_sysconfdir}/sysconfig/mouse
 %config(noreplace) %{_sysconfdir}/modprobe.d/*
 %attr(4755,root,root) /sbin/mount.vmhgfs
@@ -159,6 +161,12 @@ fi
 
 
 %changelog
+* Mon Mar 23 2009  <denis@poolshark.org> - 0.0.0.154848-1
+- Update to upstream build 154848
+- Some renames, config dir simplification
+- Added plugin directory
+- Fixed rpath issue
+
 * Wed Jan 28 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.142982-1
 - Update to upstream build 142982
 - Bug fixes, support for more recent kernels
