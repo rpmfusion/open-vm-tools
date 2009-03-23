@@ -27,6 +27,7 @@ BuildRequires: libicu-devel
 BuildRequires: desktop-file-utils
 BuildRequires: uriparser-devel
 BuildRequires: libnotify-devel
+BuildRequires: libXScrnSaver-devel
 
 Requires:  open-vm-tools-kmod >= %{version}
 Obsoletes: open-vm-tools-kmod < %{version}
