@@ -23,7 +23,6 @@ BuildRequires: gtkmm24-devel
 BuildRequires: libXtst-devel
 BuildRequires: libdnet-devel
 BuildRequires: pam-devel
-BuildRequires: procps
 BuildRequires: libdnet-devel
 BuildRequires: libicu-devel
 BuildRequires: desktop-file-utils
@@ -83,6 +82,7 @@ sed -i 's/\r//' README
         --disable-dependency-tracking \
         --without-kernel-modules \
         --without-root-privileges \
+	--without-procps \
         --with-gtkmm
 
 # Disable use of rpath
@@ -191,6 +191,7 @@ fi
 - Added pam-devel BR
 - Switch to vmtoolsd for vmsvc, updated init file
 - Added patch to fix default vmtoolsd plugin path
+- Removed procps support until 3.2.8 is investigated
 
 * Fri Apr  3 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.154848-3
 - Fixing ExclusiveArch
