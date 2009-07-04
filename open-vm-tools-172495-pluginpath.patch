@@ -1,0 +1,11 @@
+--- open-vm-tools-2009.06.18-172495/services/vmtoolsd/Makefile.in~	2009-06-18 09:03:40.000000000 +0200
++++ open-vm-tools-2009.06.18-172495/services/vmtoolsd/Makefile.in	2009-06-30 12:19:16.985865101 +0200
+@@ -278,7 +278,7 @@
+ pamdir = $(PAM_PREFIX)/pam.d
+ vmtoolsd_CPPFLAGS = @VMTOOLS_CPPFLAGS@ @GMODULE_CPPFLAGS@ \
+ 	@GOBJECT_CPPFLAGS@ @GTHREAD_CPPFLAGS@ -I$(builddir) \
+-	-DVMTOOLSD_PLUGIN_ROOT=\"$(pkglibdir)\"
++	-DVMTOOLSD_PLUGIN_ROOT=\"$(sysconfdir)/vmware-tools/plugins\"
+ vmtoolsd_LDADD = @VMTOOLS_LIBS@ @GMODULE_LIBS@ @GOBJECT_LIBS@ \
+ 	@GTHREAD_LIBS@ $(am__append_1)
+ vmtoolsd_SOURCES = cmdLine.c mainLoop.c mainPosix.c pluginMgr.c \
