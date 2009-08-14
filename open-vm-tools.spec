@@ -1,5 +1,5 @@
-%define builddate 2009.06.18
-%define buildver 172495
+%define builddate 2009.07.22
+%define buildver 179896
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
@@ -13,7 +13,6 @@ Source1:   %{name}-guestd.init
 Source2:   %{name}-sysconfig.mouse
 Source3:   vmware-toolbox.desktop
 Source4:   %{name}-modprobe.vmnics
-Patch0:   open-vm-tools-172495-pluginpath.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 ExclusiveArch: i586 x86_64
@@ -69,7 +68,6 @@ libraries.
 
 %prep
 %setup -q -n open-vm-tools-%{builddate}-%{buildver}
-%patch0 -p1 -b .pluginpath
 # Fix some permissions and formats
 chmod -x NEWS README ChangeLog AUTHORS COPYING
 sed -i 's/\r//' README
@@ -180,11 +178,16 @@ fi
 
 %files devel
 %defattr(-,root,root,-)
-%{_includedir}/*.h
+%{_includedir}/*
 %{_libdir}/*.so
+%{_libdir}/pkgconfig/*.pc
 
 
 %changelog
+* Fri Aug 14 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.179896-1
+- Update to upstream build 179896
+- Some new content in devel package
+
 * Tue Jun 30 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.172495-1
 - Update to upstream build 172495
 - Split libs subpackage for multilib friendliness
