@@ -3,7 +3,7 @@
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
-Release:   1%{?dist}
+Release:   2%{?dist}
 Summary:   VMware Guest OS Tools
 Group:     Applications/System
 License:   LGPLv2
@@ -15,7 +15,7 @@ Source3:   vmware-toolbox.desktop
 Source4:   %{name}-modprobe.vmnics
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-ExclusiveArch: i586 x86_64
+ExclusiveArch: i686 x86_64
 
 BuildRequires: gtk2-devel
 BuildRequires: gtkmm24-devel
@@ -184,6 +184,9 @@ fi
 
 
 %changelog
+* Fri Aug 14 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.179896-2
+- Fixed exclusive arch
+
 * Fri Aug 14 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.179896-1
 - Update to upstream build 179896
 - Some new content in devel package
