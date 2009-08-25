@@ -1,23 +1,23 @@
 #!/bin/bash
 #
-# Init file for open-vm-tools vmware-guestd daemon
+# Init file for open-vm-tools vmtoolsd daemon
 #
 # chkconfig: 345 80 20
 # description: open-vm-tools guest daemon
 #
-# processname: vmware-guestd
-# pidfile: /var/run/vmware-guestd.pid
+# processname: vmtoolsd
+# pidfile: /var/run/vmtoolsd.pid
 
 # source function library
 . /etc/rc.d/init.d/functions
 
 RETVAL=0
-prog="vmware-guestd"
+prog="vmtoolsd"
 
-GUESTD=/usr/sbin/vmware-guestd
-PID_FILE=/var/run/vmware-guestd.pid
-LOCK_FILE=/var/lock/subsys/vmware-guestd
-OPTIONS="--background $PID_FILE"
+GUESTD=/usr/bin/vmtoolsd
+PID_FILE=/var/run/vmtoolsd.pid
+LOCK_FILE=/var/lock/subsys/vmtoolsd
+OPTIONS="-b $PID_FILE"
 DND_DIR="/tmp/VMwareDnD"
 
 setup_modules()
@@ -42,7 +42,7 @@ unmount_stuff()
 
 start()
 {
-	echo -n $"Starting $prog: "
+	echo -n $"Starting Open-vm-tools guest daemon: "
 	setup_modules
 	$GUESTD $OPTIONS && success || failure
 	RETVAL=$?
@@ -52,8 +52,8 @@ start()
 
 stop()
 {
-	echo -n $"Stopping $prog: "
-	killall vmware-user
+	echo -n $"Stopping Open-vm-tools guest daemon: "
+	killall vmware-user 2>/dev/null
 	unmount_stuff
 	killproc $GUESTD
 	RETVAL=$?

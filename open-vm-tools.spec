@@ -3,7 +3,7 @@
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
-Release:   1%{?dist}
+Release:   2%{?dist}
 Summary:   VMware Guest OS Tools
 Group:     Applications/System
 License:   LGPLv2
@@ -184,6 +184,9 @@ fi
 
 
 %changelog
+* Tue Aug 25 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.179896-2
+- Fixed init startup script (#784)
+
 * Fri Aug 14 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.179896-1
 - Update to upstream build 179896
 - Some new content in devel package
