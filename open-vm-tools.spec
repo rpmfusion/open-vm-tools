@@ -1,9 +1,9 @@
-%define builddate 2009.07.22
-%define buildver 179896
+%define builddate 2009.08.24
+%define buildver 187411
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
-Release:   2%{?dist}
+Release:   1%{?dist}
 Summary:   VMware Guest OS Tools
 Group:     Applications/System
 License:   LGPLv2
@@ -184,6 +184,9 @@ fi
 
 
 %changelog
+* Tue Sep 15 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.187411-1
+- Update to upstream build 187411, a bugfix release
+
 * Fri Aug 14 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.179896-2
 - Fixed exclusive arch
 
