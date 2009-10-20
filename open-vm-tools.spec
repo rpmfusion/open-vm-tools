@@ -1,5 +1,5 @@
-%define builddate 2009.08.24
-%define buildver 187411
+%define builddate 2009.10.15
+%define buildver 201664
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
@@ -184,6 +184,9 @@ fi
 
 
 %changelog
+* Tue Oct 20 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.201664-1
+- Update to upstream build 201664
+
 * Tue Sep 15 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.187411-1
 - Update to upstream build 187411, a bugfix release
 
