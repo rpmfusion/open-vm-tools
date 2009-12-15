@@ -1,14 +1,15 @@
-%define builddate 2009.07.22
-%define buildver 179896
+%define builddate 2009.11.17
+%define buildver 210370
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
-Release:   2%{?dist}
+Release:   1%{?dist}
 Summary:   VMware Guest OS Tools
 Group:     Applications/System
 License:   LGPLv2
 URL:       http://open-vm-tools.sourceforge.net/
-Source0:   http://downloads.sourceforge.net/%{name}/%{name}-%{builddate}-%{buildver}.tar.gz
+# Temporary fix for inconsistent tarball name
+Source0:   http://downloads.sourceforge.net/%{name}/%{name}-2009.11.16-%{buildver}.tar.gz
 Source1:   %{name}-guestd.init
 Source2:   %{name}-sysconfig.mouse
 Source3:   vmware-toolbox.desktop
@@ -29,6 +30,7 @@ BuildRequires: desktop-file-utils
 BuildRequires: uriparser-devel
 BuildRequires: libnotify-devel
 BuildRequires: libXScrnSaver-devel
+BuildRequires: fuse-devel
 BuildRequires: doxygen graphviz
 
 Requires:  open-vm-tools-kmod >= %{version}
@@ -81,6 +83,7 @@ sed -i 's/\r//' README
         --disable-dependency-tracking \
         --without-kernel-modules \
         --without-root-privileges \
+	    --without-procps \
         --with-gtkmm
 
 # Disable use of rpath
@@ -184,6 +187,10 @@ fi
 
 
 %changelog
+* Tue Dec 15 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.210370-1
+- Update to upstream build 210370
+- Memory leak fix from 201664
+
 * Tue Aug 25 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.179896-2
 - Fixed init startup script (#784)
 
