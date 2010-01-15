@@ -82,7 +82,7 @@ sed -i 's/\r//' README
         --without-kernel-modules \
         --without-root-privileges \
 	--without-procps \
-        --with-gtkmmm
+        --with-gtkmm
 
 # Disable use of rpath
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
