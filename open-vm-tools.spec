@@ -1,5 +1,5 @@
-%define builddate 2009.11.17
-%define buildver 210370
+%define builddate 2009.12.16
+%define buildver 217847
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
@@ -8,8 +8,7 @@ Summary:   VMware Guest OS Tools
 Group:     Applications/System
 License:   LGPLv2
 URL:       http://open-vm-tools.sourceforge.net/
-# Temporary fix for inconsistent tarball name
-Source0:   http://downloads.sourceforge.net/%{name}/%{name}-2009.11.16-%{buildver}.tar.gz
+Source0:   http://downloads.sourceforge.net/%{name}/%{name}-%{builddate}-%{buildver}.tar.gz
 Source1:   %{name}-guestd.init
 Source2:   %{name}-sysconfig.mouse
 Source3:   vmware-toolbox.desktop
@@ -186,6 +185,10 @@ fi
 
 
 %changelog
+* Fri Jan 15 2010 Denis Leroy <denis@poolshark.org> - 0.0.0.217847-1
+- Update to upstream build 217847
+- Should fix bug 1025
+
 * Tue Dec 15 2009 Denis Leroy <denis@poolshark.org> - 0.0.0.210370-1
 - Update to upstream build 210370
 - Memory leak fix from 201664
