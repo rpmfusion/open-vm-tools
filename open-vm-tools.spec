@@ -1,5 +1,5 @@
-%define builddate 2009.12.16
-%define buildver 217847
+%define builddate 2010.01.19
+%define buildver 226760
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
@@ -162,7 +162,6 @@ fi
 %{_datadir}/applications/*.desktop
 %{_sysconfdir}/xdg/autostart/*.desktop
 %{_datadir}/pixmaps/*.xpm
-%{_datadir}/open-vm-tools
 %{_sysconfdir}/init.d/*
 %{_sysconfdir}/vmware-tools
 %config(noreplace) %{_sysconfdir}/pam.d/*
@@ -185,6 +184,9 @@ fi
 
 
 %changelog
+* Tue Feb  9 2010 Denis Leroy <denis@poolshark.org> - 0.0.0.226760-1
+- Update to build 226760
+
 * Fri Jan 15 2010 Denis Leroy <denis@poolshark.org> - 0.0.0.217847-1
 - Update to upstream build 217847
 - Should fix bug 1025
