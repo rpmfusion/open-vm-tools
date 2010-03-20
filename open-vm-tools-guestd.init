@@ -14,6 +14,7 @@
 RETVAL=0
 prog="vmtoolsd"
 
+CHECKVM=/usr/bin/vmware-checkvm
 GUESTD=/usr/bin/vmtoolsd
 PID_FILE=/var/run/vmtoolsd.pid
 LOCK_FILE=/var/lock/subsys/vmtoolsd
@@ -42,6 +43,9 @@ unmount_stuff()
 
 start()
 {
+	# Check if we are running inside a VM
+	$CHECKVM >/dev/null 2>&1 || return
+
 	echo -n $"Starting Open-vm-tools guest daemon: "
 	setup_modules
 	$GUESTD $OPTIONS && success || failure
@@ -52,6 +56,9 @@ start()
 
 stop()
 {
+	# Check if we are running inside a VM
+	$CHECKVM >/dev/null 2>&1 || return
+
 	echo -n $"Stopping Open-vm-tools guest daemon: "
 	killall vmware-user 2>/dev/null
 	unmount_stuff
