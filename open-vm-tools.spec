@@ -1,5 +1,5 @@
-%define builddate 2010.02.23
-%define buildver 236320
+%define builddate 2010.03.20
+%define buildver 243334
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
@@ -13,6 +13,7 @@ Source1:   %{name}-guestd.init
 Source2:   %{name}-sysconfig.mouse
 Source3:   vmware-toolbox.desktop
 Source4:   %{name}-modprobe.vmnics
+Patch0:    open-vm-tools-243334-ldl.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 ExclusiveArch: i686 x86_64
@@ -72,6 +73,7 @@ libraries.
 # Fix some permissions and formats
 chmod -x NEWS README ChangeLog AUTHORS COPYING
 sed -i 's/\r//' README
+%patch0 -p1 -b .ldl
 
 
 %build
@@ -184,6 +186,10 @@ fi
 
 
 %changelog
+* Wed Apr  7 2010 Denis Leroy <denis@poolshark.org> - 0.0.0.243334-1
+- Update to build 243334
+- Added patch to fix missing -ldl link with vmware-user
+
 * Sat Mar 20 2010 Denis Leroy <denis@poolshark.org> - 0.0.0.236320-1
 - Update to build 236320
 - Only start guestd if running on guest VM (#382)
