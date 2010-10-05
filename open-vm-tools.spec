@@ -1,5 +1,5 @@
-%define builddate 2010.03.20
-%define buildver 243334
+%define builddate 2010.04.25
+%define buildver 253928
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
@@ -16,7 +16,7 @@ Source4:   %{name}-modprobe.vmnics
 Patch0:    open-vm-tools-243334-ldl.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-ExclusiveArch: i686 x86_64
+ExclusiveArch: %{ix86} x86_64
 
 BuildRequires: gtk2-devel
 BuildRequires: gtkmm24-devel
@@ -164,6 +164,7 @@ fi
 %{_datadir}/applications/*.desktop
 %{_sysconfdir}/xdg/autostart/*.desktop
 %{_datadir}/pixmaps/*.xpm
+%{_datadir}/open-vm-tools
 %{_sysconfdir}/init.d/*
 %{_sysconfdir}/vmware-tools
 %config(noreplace) %{_sysconfdir}/pam.d/*
@@ -186,6 +187,10 @@ fi
 
 
 %changelog
+* Tue Oct  5 2010 Denis Leroy <denis@poolshark.org> - 0.0.0.253928-1
+- Update to build 253928
+- Some files section updates
+
 * Wed Apr  7 2010 Denis Leroy <denis@poolshark.org> - 0.0.0.243334-1
 - Update to build 243334
 - Added patch to fix missing -ldl link with vmware-user
