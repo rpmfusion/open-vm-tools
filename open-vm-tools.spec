@@ -1,5 +1,5 @@
-%define builddate 2010.03.20
-%define buildver 243334
+%define builddate 2010.09.19
+%define buildver 301124
 
 Name:      open-vm-tools
 Version:   0.0.0.%{buildver}
@@ -13,10 +13,9 @@ Source1:   %{name}-guestd.init
 Source2:   %{name}-sysconfig.mouse
 Source3:   vmware-toolbox.desktop
 Source4:   %{name}-modprobe.vmnics
-Patch0:    open-vm-tools-243334-ldl.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-ExclusiveArch: i686 x86_64
+ExclusiveArch: %{ix86} x86_64
 
 BuildRequires: gtk2-devel
 BuildRequires: gtkmm24-devel
@@ -73,7 +72,6 @@ libraries.
 # Fix some permissions and formats
 chmod -x NEWS README ChangeLog AUTHORS COPYING
 sed -i 's/\r//' README
-%patch0 -p1 -b .ldl
 
 
 %build
@@ -113,10 +111,6 @@ mv $RPM_BUILD_ROOT%{_sbindir}/mount.* $RPM_BUILD_ROOT/sbin
 # Install VMCI sockets header file
 mkdir -p $RPM_BUILD_ROOT%{_includedir}
 install -m 0644 lib/include/vmci_sockets.h $RPM_BUILD_ROOT%{_includedir}
-
-# Move vmware-user desktop into autostart directory
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart
-mv $RPM_BUILD_ROOT%{_datadir}/applications/vmware-user.desktop $RPM_BUILD_ROOT%{_sysconfdir}/xdg/autostart/
 
 # Install desktop file and icon for toolbox
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/pixmaps
@@ -162,6 +156,7 @@ fi
 %doc %{_docdir}/open-vm-tools
 %{_bindir}/vm*
 %{_datadir}/applications/*.desktop
+%{_datadir}/open-vm-tools
 %{_sysconfdir}/xdg/autostart/*.desktop
 %{_datadir}/pixmaps/*.xpm
 %{_sysconfdir}/init.d/*
@@ -186,6 +181,11 @@ fi
 
 
 %changelog
+* Tue Oct  5 2010 Denis Leroy <denis@poolshark.org> - 0.0.0.301124-1
+- Update to build 301124
+- Removed ldl patch
+- Removed custom xdg desktop section, upstreamed
+
 * Wed Apr  7 2010 Denis Leroy <denis@poolshark.org> - 0.0.0.243334-1
 - Update to build 243334
 - Added patch to fix missing -ldl link with vmware-user
