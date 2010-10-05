@@ -21,13 +21,19 @@ LOCK_FILE=/var/lock/subsys/vmtoolsd
 OPTIONS="-b $PID_FILE"
 DND_DIR="/tmp/VMwareDnD"
 
+has_balloon()
+{
+    bminfo=`/sbin/modinfo vmware_balloon > /dev/null 2>&1`
+    return $?
+}
+
 setup_modules()
 {
 	[ ! -d "$DND_DIR" ] && mkdir -m 1777 $DND_DIR
 	modprobe vmsync
 	modprobe vmci
 	modprobe vsock
-	modprobe vmmemctl
+	has_balloon || modprobe vmmemctl
 	modprobe vmhgfs
 	modprobe vmblock
 	sleep 1
